@@ -39,11 +39,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 
-public class Capture extends Activity {
+public class MediaSizeCut extends Activity {
 
 	final static int REQUEST_VIDEO_CAPTURED = 1;
 	Uri uriVideo = null;
 	VideoView videoviewPlay;
+	@Override
+	public void onClick1(Bundle savedInstanceState) {
+		
+				Toast.makeText(getApplicationContext(), "Button clicked",
+						Toast.LENGTH_LONG).show();
+	
+	}
 
 	/** Called when the activity is first created. */
 	@Override
@@ -91,10 +98,10 @@ public class Capture extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				if (uriVideo == null) {
-					Toast.makeText(Capture.this, "No Video", Toast.LENGTH_LONG)
+					Toast.makeText(MediaSizeCut.this, "No Video", Toast.LENGTH_LONG)
 							.show();
 				} else {
-					Toast.makeText(Capture.this,
+					Toast.makeText(MediaSizeCut.this,
 							"Playback: " + uriVideo.getPath(),
 							Toast.LENGTH_LONG).show();
 					videoviewPlay.setVideoURI(uriVideo);
@@ -110,12 +117,12 @@ public class Capture extends Activity {
 		if (resultCode == RESULT_OK) {
 			if (requestCode == REQUEST_VIDEO_CAPTURED) {
 				uriVideo = data.getData();
-				Toast.makeText(Capture.this, uriVideo.getPath(),
+				Toast.makeText(MediaSizeCut.this, uriVideo.getPath(),
 						Toast.LENGTH_LONG).show();
 			}
 		} else if (resultCode == RESULT_CANCELED) {
 			uriVideo = null;
-			Toast.makeText(Capture.this, "Cancelled!", Toast.LENGTH_LONG)
+			Toast.makeText(MediaSizeCut.this, "Cancelled!", Toast.LENGTH_LONG)
 					.show();
 		}
 	}
