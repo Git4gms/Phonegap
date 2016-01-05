@@ -1,0 +1,17 @@
+{
+	"name": "com.phonegap.plugins.mediaSizeCut",
+	"description": "A plugin to stop media recording based on the size specified.",
+	"version": "0.0.1",
+	"cordova": {
+	"id": "com.phonegap.plugins.mediaSizeCut",
+	"platforms": [
+			"android",
+			"ios"
+		]
+	},
+	"repository": {
+					"type": "git",
+					"url": "https://github.com/Gokulms/Phonegap.git"
+	},
+	"author": "Neologix Software Solutions"
+}
