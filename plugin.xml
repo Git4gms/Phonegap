@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.phonegap.plugins.mediasizecut"
-    version="0.0.1">
+    id="cordova.plugins.mediasizecut"
+    version="0.0.2">
 
   <name>mediasizecut</name>
 	<author>Neologix Software Solutions</author>
@@ -21,6 +21,11 @@
 
 	<!-- android -->
 	<platform name="android">
-		<source-file src="src/android/captureTest.java" target-dir="src/com/plugin/" />
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="mediasizecut" >
+				<param name="android-package" value="cordova.plugins.mediasizecut"/>
+			</feature>
+		</config-file>
+		<source-file src="src/android/captureTest.java" target-dir="plugins/test" />
 	</platform>
 </plugin>
