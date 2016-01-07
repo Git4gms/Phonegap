@@ -51,10 +51,10 @@ public class MediaSizeCut extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		/*PluginResult pr = new PluginResult(PluginResult.Status.NO_RESULT);
         pr.setKeepCallback(true);
-        cb = callbackContext;
+        cb = callbackContext;*/
 		
 				Toast.makeText(getApplicationContext(), "Button clicked",
-						Toast.LENGTH_LONG).show();*/
+						Toast.LENGTH_LONG).show();
 		return true;
 	}
 }
