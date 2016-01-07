@@ -48,7 +48,7 @@ import android.view.View.OnClickListener;
 public class MediaSizeCut extends CordovaPlugin {
 	public static final String TAG = "Media Plugin";
 	@Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		
 		final int duration = Toast.LENGTH_SHORT;
 		// Shows a toast
