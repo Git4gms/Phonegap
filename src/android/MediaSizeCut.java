@@ -1,4 +1,4 @@
-package org.apache.cordova.facebook;
+package com.phonegap.plugins.mediasizecut;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
