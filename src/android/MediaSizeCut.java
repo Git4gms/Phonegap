@@ -46,15 +46,21 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 
 public class MediaSizeCut extends CordovaPlugin {
-
+	public static final String TAG = "Media Plugin";
 	@Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		/*PluginResult pr = new PluginResult(PluginResult.Status.NO_RESULT);
-        pr.setKeepCallback(true);
-        cb = callbackContext;*/
 		
-				Toast.makeText(getApplicationContext(), "Button clicked",
-						Toast.LENGTH_LONG).show();
+		final int duration = Toast.LENGTH_SHORT;
+		// Shows a toast
+		Log.v(TAG,"CoolPlugin received:"+ action);
+	 
+			 
+		cordova.getActivity().runOnUiThread(new Runnable() {
+			public void run() {
+				Toast toast = Toast.makeText(cordova.getActivity().getApplicationContext(), action, duration);
+				toast.show();
+			}
+		});
 		return true;
 	}
 }
