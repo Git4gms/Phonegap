@@ -17,7 +17,7 @@ var mediaRecLive = {
             successCallback, // success callback function
             errorCallback, // error callback function
             'MediaSizeCut', // mapped to our native Java class called "CalendarPlugin"
-            'execute', // with this action name
+            'onClick1', // with this action name
             []
         ); 
     }
