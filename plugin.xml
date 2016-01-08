@@ -2,7 +2,7 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.phonegap.plugins.mediasizecut"
-    version="0.0.19">
+    version="0.0.21">
 
   <name>MediaSizeCut</name>
 	<author>Neologix Software Solutions</author>
