@@ -63,7 +63,7 @@ public class MediaSizeCut extends CordovaPlugin{
 
 		long fileSizeInBytes = Long.parseLong(args.getString(0));
 		captureVideo(Long.valueOf(fileSizeInBytes));
-
+		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
 		return true;
 
 	}
@@ -86,7 +86,7 @@ public class MediaSizeCut extends CordovaPlugin{
 				uriVideo = data.getData();
 				Toast.makeText(cordova.getActivity().getApplicationContext(),
 						uriVideo.getPath(), Toast.LENGTH_LONG).show();
-				CallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
+				
 			}
 		} else if (resultCode == cordova.getActivity().RESULT_CANCELED) {
 			uriVideo = null;
