@@ -51,14 +51,23 @@ public class MediaSizeCut extends CordovaPlugin{
 	@Override
 	public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		final int duration = Toast.LENGTH_SHORT;
+		final int limit = Toast.LENGTH_SHORT;
 		
-		cordova.getActivity().runOnUiThread(new Runnable() {
+		Toast.makeText(cordova.getActivity().getApplicationContext(), action, duration).show();
+		
+		
+		/*cordova.getActivity().runOnUiThread(new Runnable() {
 			public void run() {
-			
-				Toast.makeText(cordova.getActivity().getApplicationContext(), action, duration).show();
+
+				 Intent intent = new Intent(
+				 android.provider.MediaStore.ACTION_VIDEO_CAPTURE);
+				 intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT,limit);
+				 
+				 
+				//Toast.makeText(cordova.getActivity().getApplicationContext(), action, duration).show();
 			
 			}
-		});
+		});*/
 		
 		
 		
