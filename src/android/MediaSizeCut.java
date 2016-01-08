@@ -45,16 +45,32 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 
+import android.provider.MediaStore;
+
 public class MediaSizeCut extends CordovaPlugin{
 	public static final String TAG = "Media Plugin";
+	final static int REQUEST_VIDEO_CAPTURED = 1;
+	Uri uriVideo = null;
+	VideoView videoviewPlay;
 	
 	@Override
 	public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+		
 		final int duration = Toast.LENGTH_SHORT;
-		final int limit = Toast.LENGTH_SHORT;
+
+
+		// Get length of file in bytes
+		long fileSizeInMB = 10;
+		// Convert the bytes to Kilobytes (1 KB = 1024 Bytes)
+		long fileSizeInKB = fileSizeInMB * 1024;
+		// Convert the KB to MegaBytes (1 MB = 1024 KBytes)
+		long fileSizeInBytes = fileSizeInKB * 1024;
+
+		captureVideo(Long.valueOf(fileSizeInBytes));
+		//Toast.makeText(cordova.getActivity().getApplicationContext(), action, duration).show();
 		
-		Toast.makeText(cordova.getActivity().getApplicationContext(), action, duration).show();
-		
+				 
+				 
 		
 		/*cordova.getActivity().runOnUiThread(new Runnable() {
 			public void run() {
@@ -75,5 +91,29 @@ public class MediaSizeCut extends CordovaPlugin{
 	 
 		
 		
+	}
+
+	private void captureVideo(Long limit) {
+		
+		Intent intent = new Intent(android.provider.MediaStore.ACTION_VIDEO_CAPTURE);
+		intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT,limit);
+		cordova.getActivity().startActivityForResult(intent,REQUEST_VIDEO_CAPTURED);
+		
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if (resultCode == cordova.getActivity().RESULT_OK) {
+			if (requestCode == REQUEST_VIDEO_CAPTURED) {
+				uriVideo = data.getData();
+				Toast.makeText(cordova.getActivity().getApplicationContext(), uriVideo.getPath(),
+						Toast.LENGTH_LONG).show();
+			}
+		} else if (resultCode == cordova.getActivity().RESULT_CANCELED) {
+			uriVideo = null;
+			Toast.makeText(cordova.getActivity().getApplicationContext(), "Cancelled!", Toast.LENGTH_LONG)
+					.show();
+		}
 	}
 }
