@@ -45,7 +45,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 
-public class Mediatest extends CordovaPlugin{
+public class MediaSizeCut extends CordovaPlugin{
 	public static final String TAG = "Media Plugin";
 	
 	@Override
