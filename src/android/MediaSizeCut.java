@@ -86,7 +86,15 @@ public class MediaSizeCut extends CordovaPlugin{
 				uriVideo = data.getData();
 				Toast.makeText(cordova.getActivity().getApplicationContext(),
 						uriVideo.getPath(), Toast.LENGTH_LONG).show();
-				 that.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
+				 //that.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
+				  Runnable captureAudio = new Runnable() {
+
+	                    @Override
+	                    public void run() {
+	                          that.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
+	                        
+	                    }
+	              };
 		
 			}
 		} else if (resultCode == cordova.getActivity().RESULT_CANCELED) {
