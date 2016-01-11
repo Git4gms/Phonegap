@@ -69,12 +69,12 @@ public class MediaSizeCut extends CordovaPlugin{
 	}
 
 	private void captureVideo(Long limit) {
-		this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
+		
 		Intent intent = new Intent(
 				android.provider.MediaStore.ACTION_VIDEO_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, limit);
 		this.cordova.startActivityForResult((CordovaPlugin) this, intent, REQUEST_VIDEO_CAPTURED);
-
+		this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, testVar));
 	}
 
 	@Override
