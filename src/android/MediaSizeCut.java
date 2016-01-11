@@ -51,25 +51,26 @@ public class MediaSizeCut extends CordovaPlugin{
 	public static final String TAG = "Media Plugin";
 	final static int REQUEST_VIDEO_CAPTURED = 1;
 	Uri uriVideo = null;
+	public int testVar = 0;
 	VideoView videoviewPlay;
 	private CallbackContext callbackContext;
-	
+	public 
 	@Override
 	public boolean execute(final String action, JSONArray args,
 			CallbackContext callbackContext) throws JSONException {
-
+		this.testVar = 2;
 		this.callbackContext = callbackContext;
 		final int duration = Toast.LENGTH_SHORT;
 
 		long fileSizeInBytes = Long.parseLong(args.getString(0));
 		captureVideo(Long.valueOf(fileSizeInBytes));
-		this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
+		
 		return true;
 
 	}
 
 	private void captureVideo(Long limit) {
-
+		this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
 		Intent intent = new Intent(
 				android.provider.MediaStore.ACTION_VIDEO_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, limit);
