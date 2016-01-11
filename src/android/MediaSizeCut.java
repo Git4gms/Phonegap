@@ -63,6 +63,7 @@ public class MediaSizeCut extends CordovaPlugin{
 
 		long fileSizeInBytes = Long.parseLong(args.getString(0));
 		captureVideo(Long.valueOf(fileSizeInBytes));
+		this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
 		return true;
 
 	}
