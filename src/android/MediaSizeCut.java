@@ -54,7 +54,6 @@ public class MediaSizeCut extends CordovaPlugin{
 	public int testVar = 0;
 	VideoView videoviewPlay;
 	private CallbackContext callbackContext;
-	public 
 	@Override
 	public boolean execute(final String action, JSONArray args,
 			CallbackContext callbackContext) throws JSONException {
