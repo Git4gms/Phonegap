@@ -52,13 +52,13 @@ public class MediaSizeCut extends CordovaPlugin{
 	final static int REQUEST_VIDEO_CAPTURED = 1;
 	Uri uriVideo = null;
 	VideoView videoviewPlay;
-	CallbackContext CallbackContext;
+	private CallbackContext callbackContext;
 	
 	@Override
 	public boolean execute(final String action, JSONArray args,
 			CallbackContext callbackContext) throws JSONException {
 
-		this.CallbackContext = callbackContext;
+		this.callbackContext = callbackContext;
 		final int duration = Toast.LENGTH_SHORT;
 
 		long fileSizeInBytes = Long.parseLong(args.getString(0));
@@ -79,13 +79,14 @@ public class MediaSizeCut extends CordovaPlugin{
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		final MediaSizeCut that = this;
 		// TODO Auto-generated method stub
 		if (resultCode == cordova.getActivity().RESULT_OK) {
 			if (requestCode == REQUEST_VIDEO_CAPTURED) {
 				uriVideo = data.getData();
 				Toast.makeText(cordova.getActivity().getApplicationContext(),
 						uriVideo.getPath(), Toast.LENGTH_LONG).show();
-				CallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
+				 that.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
 		
 			}
 		} else if (resultCode == cordova.getActivity().RESULT_CANCELED) {
