@@ -87,7 +87,7 @@ public class MediaSizeCut extends CordovaPlugin{
 		return true;
 	}
 	 public void onActivityResult(int requestCode, int resultCode, final Intent data) {
-		 final Mediatest that = this;
+		 final MediaSizeCut that = this;
 		 Runnable captureVideo = new Runnable() {
 
 	             @Override
