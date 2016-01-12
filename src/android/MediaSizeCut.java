@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -36,6 +37,7 @@ import java.io.File;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.content.pm.Signature;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
@@ -46,6 +48,8 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 
 import android.provider.MediaStore;
+
+
 
 public class MediaSizeCut extends CordovaPlugin{
 	public CallbackContext callbackContext;
