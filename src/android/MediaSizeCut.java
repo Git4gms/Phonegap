@@ -48,60 +48,55 @@ import android.view.View.OnClickListener;
 import android.provider.MediaStore;
 
 public class MediaSizeCut extends CordovaPlugin{
-	public static final String TAG = "Media Plugin";
-	final static int REQUEST_VIDEO_CAPTURED = 1;
-	Uri uriVideo = null;
-	public int testVar = 0;
-	VideoView videoviewPlay;
-	private CallbackContext callbackContext;
+	public CallbackContext callbackContext;
+	private static final int CAPTURE_VIDEO = 1;  
+	private long limit;                             // the number of pics/vids/clips to take
+	private int duration; 
+	private int quality;
+    private JSONArray results;  
+    private static final int CAPTURE_NO_MEDIA_FILES = 3;
+    Uri uriVideo = null;
 	@Override
-	public boolean execute(final String action, JSONArray args,
-			CallbackContext callbackContext) throws JSONException {
-		this.testVar = 2;
-		this.callbackContext = callbackContext;
-		final int duration = Toast.LENGTH_SHORT;
+	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+       // this.callbackContext = callbackContext;
+        PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
+        r.setKeepCallback(true);
+       this.callbackContext.sendPluginResult(r);
+        
+        
+       
+        duration = 0;
+        quality = 1;
+        if (action.equals("onClick1")) {
+        	 Intent intent = new Intent(android.provider.MediaStore.ACTION_VIDEO_CAPTURE);
 
-		long fileSizeInBytes = Long.parseLong(args.getString(0));
-		captureVideo(Long.valueOf(fileSizeInBytes));
+
+	        if(Build.VERSION.SDK_INT > 7){
+	            intent.putExtra("android.intent.extra.durationLimit", duration);
+	            intent.putExtra("android.intent.extra.videoQuality", quality);
+	        }
+	        cordova.startActivityForResult(this,intent,90);
+        }
+		
+		
 		
 		return true;
-
 	}
+	 public void onActivityResult(int requestCode, int resultCode, final Intent data) {
+		 final Mediatest that = this;
+		 Runnable captureVideo = new Runnable() {
 
-	private void captureVideo(Long limit) {
-		
-		Intent intent = new Intent(
-				android.provider.MediaStore.ACTION_VIDEO_CAPTURE);
-		intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, limit);
-		cordova.setActivityResultCallback (this);
-		this.cordova.startActivityForResult((CordovaPlugin) this, intent, REQUEST_VIDEO_CAPTURED);
-		
-	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		final MediaSizeCut that = this;
-		// TODO Auto-generated method stub
-		if (resultCode == cordova.getActivity().RESULT_OK) {
-			if (requestCode == REQUEST_VIDEO_CAPTURED) {
-				uriVideo = data.getData();
-				Toast.makeText(cordova.getActivity().getApplicationContext(),
-						uriVideo.getPath(), Toast.LENGTH_LONG).show();
-				 //that.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
-				  Runnable captureAudio = new Runnable() {
-
-	                    @Override
-	                    public void run() {
-	                          that.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
-	                        
-	                    }
-	              };
-		
-			}
-		} else if (resultCode == cordova.getActivity().RESULT_CANCELED) {
-			uriVideo = null;
-			Toast.makeText(cordova.getActivity().getApplicationContext(),
-					"Cancelled!", Toast.LENGTH_LONG).show();
-		}
-	}
+	             @Override
+	             public void run() {
+	            	 uriVideo = data.getData();
+	 				Toast.makeText(cordova.getActivity().getApplicationContext(),
+	 						uriVideo.getPath(), Toast.LENGTH_LONG).show();
+	            	 that.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
+	            	 
+	             }
+	         };
+	         this.cordova.getThreadPool().execute(captureVideo);
+	     } 
+	 
+	 
 }
