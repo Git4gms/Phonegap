@@ -81,7 +81,7 @@ public class MediaSizeCut extends CordovaPlugin {
  	  }
  	
  	 public void onActivityResult(int requestCode, int resultCode, Intent intent) {
- 		 
+ 		  callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, resultCode));
  	    if (resultCode == Activity.RESULT_OK) {
  	      if (requestCode == CAPTURE_VIDEO) {
  	        Uri data = null;
