@@ -71,11 +71,11 @@ public class MediaSizeCut extends CordovaPlugin {
  	    String videoUri = "d:testpath";
  	    intent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
  	    intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, fileSizeInBytes);
-
- 	 
-
- 	    this.cordova.startActivityForResult(this, intent, CAPTURE_VIDEO);
- 	  }
+		this.cordova.startActivityForResult(this, intent, CAPTURE_VIDEO);
+		PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
+		r.setKeepCallback(true);
+		callbackContext.sendPluginResult(r);
+ 	}
  	
  	 public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, Activity.RESULT_OK));
