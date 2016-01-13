@@ -4,7 +4,6 @@ package com.phonegap.plugins.mediasizecut;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -16,6 +15,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,8 +28,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class MediaSizeCut extends CordovaPlugin {
-		
-	
+
 	private static final String VIDEO_3GPP = "video/3gpp";
 	private static final String VIDEO_MP4 = "video/mp4";
 
@@ -84,18 +83,46 @@ public class MediaSizeCut extends CordovaPlugin {
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		// callbackContext.sendPluginResult(new
-		// PluginResult(PluginResult.Status.OK, CAPTURE_VIDEO));
+		
+		
+		if (resultCode == Activity.RESULT_OK) 
+			
+		 {
 			if (requestCode == CAPTURE_VIDEO) {
 
+				Uri data = null;
+				Toast.makeText(cordova.getActivity(), "Video captured!", Toast.LENGTH_LONG)
+				.show();
+				data = intent.getData();
+				if (data == null) {
+					callbackContext.sendPluginResult(new PluginResult(
+							PluginResult.Status.OK, 00));
+				} else {
+					callbackContext.sendPluginResult(new PluginResult(
+							PluginResult.Status.OK, 11));
+				}
+				
+			}
+		} else if (resultCode == Activity.RESULT_CANCELED) {
+			
+			Toast.makeText(cordova.getActivity(), "Cancelled!", Toast.LENGTH_LONG)
+					.show();
+			callbackContext.sendPluginResult(new PluginResult(
+					PluginResult.Status.OK, 00));
+		}
+		/*// callbackContext.sendPluginResult(new
+		// PluginResult(PluginResult.Status.OK, CAPTURE_VIDEO));
 				if (resultCode == Activity.RESULT_OK) {
 					
-					Uri data = null;
+					if (requestCode == CAPTURE_VIDEO) {
 
-				if (intent != null) {
+							Uri data = null;
+
+				   if (intent != null) {
 
 					data = intent.getData();
-
+					callbackContext.sendPluginResult(new PluginResult(
+							PluginResult.Status.OK, 11));
 					if (data == null) {
 						callbackContext.sendPluginResult(new PluginResult(
 								PluginResult.Status.OK, 00));
@@ -106,11 +133,11 @@ public class MediaSizeCut extends CordovaPlugin {
 				}
 
 			}
-		else if (resultCode == Activity.RESULT_CANCELED) {
-			callbackContext.sendPluginResult(new PluginResult(
-					PluginResult.Status.OK, 33));
-		}
+				else if (resultCode == Activity.RESULT_CANCELED) {
+					callbackContext.sendPluginResult(new PluginResult(
+							PluginResult.Status.OK, 33));
+				}
 	
-			}
+			}*/
 	}
 }
