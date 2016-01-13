@@ -28,7 +28,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class MediaSizeCut extends CordovaPlugin {
-	
+		
 	private static final String VIDEO_3GPP = "video/3gpp";
 	private static final String VIDEO_MP4 = "video/mp4";
 
@@ -71,15 +71,17 @@ public class MediaSizeCut extends CordovaPlugin {
  	    String videoUri = "d:testpath";
  	    intent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
  	    intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, fileSizeInBytes);
-		cordova.setActivityResultCallback (this);
-		this.cordova.startActivityForResult(this, intent, CAPTURE_VIDEO);
-		PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
-		r.setKeepCallback(true);
-		callbackContext.sendPluginResult(r);
- 	}
+
+ 	 
+ 	   cordova.setActivityResultCallback (this);
+ 	    this.cordova.startActivityForResult(this, intent, CAPTURE_VIDEO);
+ 	    PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
+ 	    r.setKeepCallback(true);
+ 	    callbackContext.sendPluginResult(r);
+ 	  }
  	
  	 public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, Activity.RESULT_OK));
+ 		 
  	    if (resultCode == Activity.RESULT_OK) {
  	      if (requestCode == CAPTURE_VIDEO) {
  	        Uri data = null;
@@ -91,37 +93,37 @@ public class MediaSizeCut extends CordovaPlugin {
  	        if (data == null) {
  	        //  File movie = new File(getTempDirectoryPath(), "VideoCapturePlus.avi");
  	          //data = data.getPath();
- 	        	 this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 1));
+ 	        	 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 1));
  	        }
 
  	        // create a file object from the uri
  	        if (data == null) {
- 	        	 this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 2));
+ 	        	 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 2));
  	        } else {
  	          //results.put(createMediaFile(data));
  	          if (5 >= 2) {
  	            // Send Uri back to JavaScript for viewing video
- 	        	 this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 3));
+ 	        	 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 3));
  	          } else {
  	            // still need to capture more video clips
  	           // captureVideo(duration, highquality, frontcamera);
- 	        	 this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 5));
+ 	        	 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 5));
  	          }
  	        }
  	      }
  	    } else if (resultCode == Activity.RESULT_CANCELED) {
  	      // If we have partial results send them back to the user
  	    	 if (5 >= 2) {
- 	    	 this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 4));
+ 	    	  callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 4));
  	      } else {
- 	    	 this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 8));
+ 	    	  callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 8));
  	      }
  	    } else {
  	      // If we have partial results send them back to the user
  	    	 if (5 >= 2) {
- 	        this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 6));
+ 	         callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 6));
  	      } else {
- 	    	 this.callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 7));
+ 	    	 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 7));
  	      }
  	    }
  	  }
