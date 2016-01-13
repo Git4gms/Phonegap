@@ -1,7 +1,7 @@
 {
 	"name": "com.phonegap.plugins.mediasizecut",
 	"description": "A plugin to stop media recording based on the size specified.",
-	"version": "0.0.46",
+	"version": "0.0.47",
 	"cordova": {
 	"id": "com.phonegap.plugins.mediasizecut",
 	"platforms": [
