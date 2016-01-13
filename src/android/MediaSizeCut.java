@@ -81,7 +81,7 @@ public class MediaSizeCut extends CordovaPlugin {
  	  }
  	
  	 public void onActivityResult(int requestCode, int resultCode, Intent intent) {
- 		  callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, resultCode));
+ 		  //callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, CAPTURE_VIDEO));
  	    if (resultCode == Activity.RESULT_OK) {
  	      if (requestCode == CAPTURE_VIDEO) {
  	        Uri data = null;
@@ -110,7 +110,9 @@ public class MediaSizeCut extends CordovaPlugin {
  	        	 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 5));
  	          }
  	        }
- 	      }
+ 	      }else{
+			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 55));
+		  }
  	    } else if (resultCode == Activity.RESULT_CANCELED) {
  	      // If we have partial results send them back to the user
  	    	 if (5 >= 2) {
