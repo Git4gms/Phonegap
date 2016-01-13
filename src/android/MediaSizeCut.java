@@ -29,6 +29,7 @@ import java.util.concurrent.Future;
 
 public class MediaSizeCut extends CordovaPlugin {
 		
+	
 	private static final String VIDEO_3GPP = "video/3gpp";
 	private static final String VIDEO_MP4 = "video/mp4";
 
@@ -85,10 +86,11 @@ public class MediaSizeCut extends CordovaPlugin {
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		// callbackContext.sendPluginResult(new
 		// PluginResult(PluginResult.Status.OK, CAPTURE_VIDEO));
-		if (resultCode == Activity.RESULT_OK) {
 			if (requestCode == CAPTURE_VIDEO) {
 
-				Uri data = null;
+				if (resultCode == Activity.RESULT_OK) {
+					
+					Uri data = null;
 
 				if (intent != null) {
 
@@ -103,16 +105,12 @@ public class MediaSizeCut extends CordovaPlugin {
 					}
 				}
 
-			} else {
-				callbackContext.sendPluginResult(new PluginResult(
-						PluginResult.Status.OK, 22));
 			}
-		}
-
 		else if (resultCode == Activity.RESULT_CANCELED) {
 			callbackContext.sendPluginResult(new PluginResult(
 					PluginResult.Status.OK, 33));
 		}
+	
+			}
 	}
-
 }
